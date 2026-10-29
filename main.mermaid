@@ -1,0 +1,72 @@
+classDiagram
+
+namespace fleetTrack.domain.vehicles {
+    class _Vehicle_ <<Abstract>> {
+        -load: List<_Load_>
+        
+        +hasAnyLoad() boolean
+        +hasHumanLoad() boolean
+        +hasLivestock() boolean
+        +hasProductLoad() boolean
+    }
+
+    class Car { 
+    }
+    class Motorcycle {
+    }
+    class Truck {
+    }
+    class Bus {
+    }
+    class Plane {
+    }
+    class Boat {
+    }
+    class Ship {
+    }
+
+}
+
+namespace fleetTrack.domain.vehicles.properties {
+    class Aerial <<Interface>> {
+    }
+    class Aquatic <<Interface>> {
+    }
+    class Terrestrial <<Interface>> {
+        +getWheelCount() int
+    }
+}
+
+namespace fleetTrack.domain.load {
+    class _Load_ <<Abstract>> {
+
+    }
+
+    class HumanTrasport {
+        -quantity: int
+    }
+
+    class LivestockLoad {
+        -name: String
+        -document: String
+    }
+
+    class ProductLoad {
+        -id: String
+        -quantity: String
+        -type: String
+    }
+}
+
+_Vehicle_ <|-- Car
+_Vehicle_ <|-- Motorcycle
+_Vehicle_ <|-- Truck
+_Vehicle_ <|-- Bus
+_Vehicle_ <|-- Plane
+_Vehicle_ <|-- Boat
+_Vehicle_ <|-- Ship
+
+_Vehicle_ "1" *-- "*" _Load_
+_Load_ <|-- HumanTrasport
+_Load_ <|-- LivestockLoad
+_Load_ <|-- ProductLoad
